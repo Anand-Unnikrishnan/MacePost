@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+
 	<div style="width:350px; border: solid; margin: auto">
 	 <form method="post" action="Auth">
 	 	<br>
@@ -14,6 +15,7 @@
 	 	Password&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;<input type="password" name="password"><br><br>
 	 	<button type="submit"> Login </button><br><br>
 	 </form>
+
 	</div>
 </body>
 </html>
