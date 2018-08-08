@@ -1,13 +1,12 @@
 package com.macepost.auth;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class Auth
@@ -27,13 +26,18 @@ public class Auth extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		PrintWriter out = response.getWriter();
+		HttpSession session = request.getSession();
 		CheckAuthentication checkauthentication = new CheckAuthentication();
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
-		out.print(username+" "+password);
-		String s = checkauthentication.check(username,password);
-		out.print(s);
+		String actual_password = checkauthentication.check(username,password);
+		//out.print("sent : "+password+" actual : "+actual_password+"\n");
+		if(password.equals(actual_password)) {
+			session.setAttribute("Logedin", 1);
+			response.sendRedirect("UserFeeds");
+		}
+		else
+			response.sendRedirect("Login.jsp");
 	}
 
 }

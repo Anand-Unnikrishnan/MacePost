@@ -21,16 +21,14 @@ public class CheckAuthentication {
 		}
 	}
 	
+
 	public String check(String username, String password) {
 		try{
 			Statement statement = con.createStatement();
 			ResultSet rs;
-			String query = "select password from users WHERE user_name=\""+username+"\";";
-			System.out.println(query);
-			rs = statement.executeQuery(query);
+			rs = statement.executeQuery("select password from users WHERE user_name=\""+username+"\";");
 			rs.next();
-			String s = "password : "+rs.getString("password");
-			return s;
+			return rs.getString("password");
 		}catch(Exception e) {System.out.println(e);}
 		return ("Error");
 	}
