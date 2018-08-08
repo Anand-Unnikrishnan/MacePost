@@ -9,6 +9,6 @@
 <body>
 	<div style="width:50px; border: solid">
 	
-	</div>>
+	</div>
 </body>
 </html>
