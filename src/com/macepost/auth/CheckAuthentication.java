@@ -4,10 +4,14 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+
+import org.mindrot.jbcrypt.BCrypt;
+
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
+
 
 public class CheckAuthentication {
 	Connection con;
@@ -15,22 +19,29 @@ public class CheckAuthentication {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/macepost","root","");
-			
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
 	}
 	
 
-	public String check(String username, String password) {
+	public boolean check(String admission, String password) {
 		try{
 			Statement statement = con.createStatement();
 			ResultSet rs;
-			rs = statement.executeQuery("select password from users WHERE user_name=\""+username+"\";");
-			rs.next();
-			return rs.getString("password");
+			admission = admission.toUpperCase();
+			rs = statement.executeQuery("select password from users WHERE admission_no='"+admission+"';");
+			if(rs.next()) {
+				if(BCrypt.checkpw(password,rs.getString("password"))) {
+					System.out.println(rs.getString("password"));
+					return true;
+				}
+					
+			}	
+			return false;
+			
 		}catch(Exception e) {System.out.println(e);}
-		return ("Error");
+		return false;
 	}
 	
 	public void addUser(String admission,String username,String year,String phone) throws SQLException {
@@ -52,12 +63,14 @@ public class CheckAuthentication {
 		int rs;
 		String query = "select 1 from tempdata WHERE admission=\""+admission+"\";";
 		ResultSet res;
+		System.out.println(password);
+		password = BCrypt.hashpw(password, BCrypt.gensalt());
 		res = statement.executeQuery(query);
 		if(res.next()) {
-			query = "update tempdata set password='"+Hash(password)+"'";
+			query = "update tempdata set password='"+password+"'";
 			rs = statement.executeUpdate(query);
 		}else {
-			query = "insert into tempdata(admission,password) values('"+admission+"','"+Hash(password)+"')";
+			query = "insert into tempdata(admission,password) values('"+admission+"','"+password+"')";
 			rs = statement.executeUpdate(query);
 		}
 
@@ -82,9 +95,5 @@ public class CheckAuthentication {
 		res = statement.executeUpdate(query);
 	}
 	
-	private static String Hash(String hash) throws NoSuchAlgorithmException {
-		MessageDigest digest = MessageDigest.getInstance("SHA-256");
-		byte[] encodedhash = digest.digest(hash.getBytes(StandardCharsets.UTF_8));
-	    return encodedhash.toString();
-	}
+
 }
