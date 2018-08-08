@@ -9,8 +9,16 @@
 </head>
 <body>
 <form action="Register" method="post">
-<input type="text" name="username">
+<% if(request.getAttribute("error")!=null){ %>
+<div>
+<p>
+<% out.print(request.getAttribute("error")); %>
+</p>
+</div>
+<% } %>
+<input type="text" name="admissionno" <% if(request.getAttribute("admissionno")!=null){ %> value="<% out.print(request.getAttribute("admissionno")); %>" <% } %>>
 <input type="password" name="password">
+<input type="password" name="confirmpass">
 <input type="hidden" name="_token" value="<% out.print(request.getAttribute("token")); %>">
 <button type="submit">Submit</button>
 </form>
