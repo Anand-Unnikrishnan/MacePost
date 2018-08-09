@@ -43,10 +43,11 @@ public class UserFeeds extends HttpServlet {
 			rs = statement.executeQuery("select* from tweets;");
 			PrintWriter out = response.getWriter();
 			ArrayList<TweetData> tweetdata = new ArrayList<TweetData>();
-			TweetData temp_tweetdata = new TweetData();
+			
 			//String s = "";
 			int count=0;
 			while(rs.next()) {
+				TweetData temp_tweetdata = new TweetData();
 				//out.print(rs.getString("tweet_id")+" "+rs.getString("user_id")+" "+rs.getString("likes")+" "+rs.getString("tweet")+" "+rs.getString("datetime"));
 				temp_tweetdata.setdata(rs.getInt("tweet_id"), rs.getInt("user_id"), rs.getInt("likes"), rs.getString("tweet"), rs.getString("datetime"));
 				tweetdata.add(temp_tweetdata);
