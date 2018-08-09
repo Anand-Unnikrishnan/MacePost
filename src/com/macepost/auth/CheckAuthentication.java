@@ -33,7 +33,6 @@ public class CheckAuthentication {
 			rs = statement.executeQuery("select password from users WHERE admission_no='"+admission+"';");
 			if(rs.next()) {
 				if(BCrypt.checkpw(password,rs.getString("password"))) {
-					System.out.println(rs.getString("password"));
 					return true;
 				}
 					
