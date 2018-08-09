@@ -1,9 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-    
-    
-    
-<% response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");  %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -44,7 +38,7 @@
 						</nav>
 						<div class="search_container ml-auto">
 							<div class="weather">
-								<div class="temperature">+10°</div>
+								<div class="temperature">+10Â°</div>
 								<img class="weather_icon" src="images/cloud.png" alt="">
 							</div>
 							<form action="#">
@@ -94,26 +88,12 @@
 						<!-- Post Comment -->
 						<div class="post_comment">
 							<div class="contact_form_container">
-								<h3>Register</h3>
-								<div class="progress">
-								  <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-								</div>
-								<form action="Register" method="post">
-									<% if(request.getAttribute("error")!=null){ %>
-									<div style="text-align: center; color: red;">
-									<p>
-									<% out.print(request.getAttribute("error")); %>
-									</p>
-									</div>
-									<% } %>
-									<input type="text" class="contact_input contact_input_name" placeholder="Admission no" required="required" name="admissionno" <% if(request.getAttribute("admissionno")!=null){ %> value="<% out.print(request.getAttribute("admissionno")); %>" <% } %>><br>
-									<input type="password" class="contact_input contact_input_password" placeholder="Password" required="required" name="password">
-									<input type="password" class="contact_input contact_input_password" placeholder="Confirm Password" required="required" name="confirmpass">
-									<input type="hidden" name="_token" value="<% out.print(request.getAttribute("token")); %>">
-									<button type="submit" class="contact_button">Register</button>
+								<form action="#">
+									<input type="text" class="contact_input contact_input_name" placeholder="Your Name" required="required">
+									<input type="email" class="contact_input contact_input_email" placeholder="Your Email" required="required">
+									<textarea class="contact_text" placeholder="Your Message" required="required"></textarea>
+									<button type="submit" class="contact_button">Send Message</button>
 								</form>
-								<br>
-								<p align="center">Already have an account? <a href="Login.jsp">Login here</a></p>
 							</div>
 						</div>
 					</div>
@@ -176,12 +156,15 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 <script src="plugins/parallax-js-master/parallax.min.js"></script>
 <script src="js/contact.js"></script>
 
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
+  gtag('config', 'UA-23581568-13');
+</script>
 
 </body>
-</html>    
-    
-
-
-			
-
+</html>
