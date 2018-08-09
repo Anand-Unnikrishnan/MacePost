@@ -38,6 +38,9 @@
 	background-image: url("nature.jpg");
 	background-size: auto;
 	}
+	html,body{
+	padding:0;
+	margin:0;}
 </style>
 </head>
 <body>
@@ -61,7 +64,7 @@
 				<div style="text-align: center; height: 70px;"><button type="submit" class= "button"; style="border-radius:100%; height:50px; width:50px;"> login </button></div>
 			 
 			</form>
-		<div style=" margin: auto; text-align: center; color: blue;">Haven't registered yet? <p><b><a href="Register" style="color: red; font-size:12px">Register here</a></b></p></div>
+		<div style=" margin: auto; text-align: center; color: blue;">Haven't registered yet? <a href="Register" style="color: red; text-decoration: none; font-size:12px">Register here</a></div>
 		</div>
 		<div></div>
 		</div>

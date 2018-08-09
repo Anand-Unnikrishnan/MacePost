@@ -39,6 +39,9 @@
 	background-image: url("nature.jpg");
 	background-size: auto;
 	}
+	html,body{
+	padding:0;
+	margin:0;}
 </style>
 </head>
 <body>
@@ -66,7 +69,7 @@
 				<input type="hidden" name="_token" value="<% out.print(request.getAttribute("token")); %>">
 				<div style="text-align: center; height: 60px;"><button type="submit" class= "button"; style="border-radius:100%; height:60px; width:60px;">Register</button></div>
 		</form>
-		<div style="  text-align: center; color: blue;">Already have an account? <p><b><a href="Login.jsp" style="color: red; font-size:12px">Login here</a></b></p></div>
+		<div style="  text-align: center; color: blue;">Already have an account? <a href="Login.jsp" style="color: red; text-decoration: none; font-size:12px">Login here</a></div>
 		</div>
 		<div></div>
 		</div>
