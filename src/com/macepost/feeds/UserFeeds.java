@@ -32,7 +32,7 @@ public class UserFeeds extends HttpServlet {
     public UserFeeds() {
     	try {
 			Class.forName("com.mysql.jdbc.Driver");
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3307/macepost","root","root");
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/macepost","root","");
 		}catch(Exception e) {e.printStackTrace();}
     }
     

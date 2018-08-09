@@ -1,6 +1,7 @@
 package com.macepost.auth;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
@@ -58,6 +59,10 @@ public class RegisterStep2 extends HttpServlet {
 								dB.addUser(((String)session.getAttribute("admission")).toUpperCase(),(String)request.getParameter("username"),(String)request.getParameter("current_year"),(String)request.getParameter("phone"));
 								dB.removeTemp((String)session.getAttribute("admission"));
 								session.removeAttribute("admission");
+								PrintWriter out = response.getWriter();
+								out.print("success");
+								session.setAttribute("succ", "Registration successful. Please login to continue");
+								response.sendRedirect("Login.jsp");
 							} catch (SQLException e) {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
